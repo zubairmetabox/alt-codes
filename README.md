@@ -66,3 +66,13 @@ The app installs a low-level keyboard hook. While **Left Alt** is held, each top
 ## License
 
 [MIT](LICENSE)
+
+## Download page
+
+`site/` is the static download page (deployed to Vercel). Rebuild its download files after changing the installer:
+
+```bash
+tools/build-site.sh
+```
+
+It wraps `Install-AltCodes.ps1` into double-clickable `Install-AltCodes.cmd` / `Uninstall-AltCodes.cmd` files (a short batch launcher followed by the script), plus a zip of both.

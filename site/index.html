@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alt Codes · Type é, ç, € on a laptop without a numpad</title>
+<meta name="description" content="Free Windows tray app: hold Left Alt and type the code on the number row. Alt+130 = é, just like a full keyboard. No admin rights, open source.">
+<meta property="og:title" content="Alt Codes for laptops without a numpad">
+<meta property="og:description" content="Hold Left Alt, type 130 on the number row, get é. Free and open source for Windows.">
+<meta property="og:image" content="/icon.png">
+<link rel="icon" href="/icon.png">
+<style>
+  :root {
+    --blue: #2563eb; --blue-d: #1d4ed8; --ink: #0f172a; --muted: #475569;
+    --line: #e2e8f0; --soft: #f1f5f9; --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  a { color: var(--blue); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
+  .brand img { width: 32px; height: 32px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; padding: 48px 0 72px; }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.08; margin: 0 0 18px; letter-spacing: -0.02em; }
+  h1 span { color: var(--blue); }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 17px; padding: 14px 24px; border-radius: 10px; box-shadow: 0 6px 20px rgba(37, 99, 235, .3); transition: background .15s, transform .15s; }
+  .btn:hover { background: var(--blue-d); transform: translateY(-1px); }
+  .btn svg { width: 20px; height: 20px; }
+  .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+  .meta a { color: var(--muted); }
+  .notice { display: none; margin-top: 16px; padding: 10px 14px; border-radius: 8px; background: #fef3c7; color: #78350f; font-size: 14px; }
+
+  .demo { background: var(--ink); border-radius: 18px; padding: 28px; color: #e2e8f0; box-shadow: 0 30px 60px -20px rgba(15, 23, 42, .45); }
+  .keys { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 22px; }
+  .key { min-width: 46px; height: 46px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; background: #1e293b; border: 1px solid #334155; border-bottom-width: 4px; font-weight: 600; font-size: 17px; transition: all .12s; }
+  .key.alt { min-width: 70px; }
+  .key.on { background: var(--blue); border-color: var(--blue-d); transform: translateY(2px); border-bottom-width: 2px; color: #fff; }
+  .plus { color: #64748b; }
+  .screen { background: #fff; color: var(--ink); border-radius: 10px; padding: 18px 20px; font-size: 26px; min-height: 72px; font-family: Georgia, serif; }
+  .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--ink); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .demo small { display: block; margin-top: 14px; color: #94a3b8; font-size: 13px; }
+
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step { background: var(--soft); border-radius: 14px; padding: 22px; }
+  .step b.n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 10px; }
+  .step h3 { margin: 0 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--muted); font-size: 15px; }
+  .smartscreen { margin-top: 24px; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .smartscreen .ic { width: 40px; height: 40px; border-radius: 10px; background: #dbeafe; color: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  .smartscreen p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+  kbd { font-family: inherit; font-size: .9em; background: #fff; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; }
+
+  .codes { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .code { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; transition: border-color .12s, background .12s; }
+  .code:hover { border-color: var(--blue); background: #eff6ff; }
+  .code .ch { font-size: 26px; font-family: Georgia, serif; }
+  .code .num { font-family: ui-monospace, Consolas, monospace; color: var(--muted); font-size: 15px; text-align: right; }
+  .code .num em { display: block; font-style: normal; font-size: 11px; color: #94a3b8; font-family: inherit; }
+  .note { font-size: 14px; color: var(--muted); margin-top: 18px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p, .card li { color: var(--muted); font-size: 15px; }
+  .card ul { padding-left: 18px; margin: 6px 0 0; }
+  pre { background: var(--soft); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: 13px; margin: 10px 0 0; white-space: pre-wrap; word-break: break-all; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 14px; opacity: 0; transition: all .2s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateX(-50%); }
+
+  @media (max-width: 820px) {
+    .hero, .grid2 { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><img src="/icon.png" alt="">Alt Codes</a>
+    <nav>
+      <a href="#install">Install</a>
+      <a href="#codes">Codes</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/zubairmetabox/alt-codes">GitHub</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Alt codes on a laptop <span>without a numpad.</span></h1>
+      <p class="lead">Hold <b>Left Alt</b>, type the code on the number row, let go. <b>Alt + 130</b> gives <b>é</b>, just like on a full keyboard. A tiny, free tray app for Windows.</p>
+      <a class="btn" href="/Install-AltCodes.cmd" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download for Windows
+      </a>
+      <div class="meta">Free · Windows 10 and 11 · No admin rights · 16 KB · <a href="https://github.com/zubairmetabox/alt-codes">Open source (MIT)</a></div>
+      <div class="notice" id="notWin">You're not on Windows. Alt Codes is a Windows app; open this page on your Windows laptop to install it.</div>
+    </div>
+
+    <div class="demo" aria-hidden="true">
+      <div class="keys">
+        <span class="key alt" id="kAlt">Alt</span><span class="plus">+</span>
+        <span class="key" id="k0">1</span><span class="key" id="k1">3</span><span class="key" id="k2">0</span>
+      </div>
+      <div class="screen"><span id="typed">Caf</span><span class="caret"></span></div>
+      <small>Number row, not numpad. Works in Word, Chrome, Outlook, WhatsApp, anywhere you type.</small>
+    </div>
+  </div>
+</div>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install in under a minute</h2>
+    <p class="sub">One small file. It sets the app up for your Windows account only.</p>
+    <div class="steps">
+      <div class="step"><b class="n">1</b><h3>Download</h3><p>Click <b>Download for Windows</b>. You get <code>Install-AltCodes.cmd</code>. If your browser asks, choose <b>Keep</b>.</p></div>
+      <div class="step"><b class="n">2</b><h3>Double-click it</h3><p>Open the file from your Downloads. A black window appears for a few seconds while it installs, then press any key to close it.</p></div>
+      <div class="step"><b class="n">3</b><h3>Start typing</h3><p>A blue <b>Alt</b> icon appears in the tray (check under the <kbd>^</kbd> arrow). Try <kbd>Alt</kbd> + <kbd>1</kbd><kbd>3</kbd><kbd>0</kbd> in Notepad.</p></div>
+    </div>
+    <div class="smartscreen">
+      <div class="ic">!</div>
+      <div>
+        <b>"Windows protected your PC"?</b>
+        <p>That's normal for small free apps that aren't sold through a store. Click <b>More info</b>, then <b>Run anyway</b>. The installer is plain text, so you can open it in Notepad and read every line first. Nothing else is downloaded.</p>
+        <p>If your browser won't let you save a <code>.cmd</code> file, download <a href="/AltCodes-Installer.zip">the zip</a> instead, right-click it and choose <b>Extract All</b>, then double-click <code>Install-AltCodes.cmd</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="codes">
+  <div class="wrap">
+    <h2>Handy codes</h2>
+    <p class="sub">Hold Left Alt, type the number on the top row, release Alt. Click a tile to copy the character.</p>
+    <div class="codes" id="codeGrid"></div>
+    <p class="note">Codes with a leading <b>0</b> (like 0233) use the Windows character set; codes without it (like 130) use the old DOS set. Both work.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <p class="sub">The short answers.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>What does it actually do?</h3>
+        <p>While you hold <b>Left Alt</b>, it turns the number-row keys into numpad keys. Windows then does what it always does with Alt codes. Nothing is recorded, stored or sent anywhere, and it has no network access at all.</p>
+      </div>
+      <div class="card">
+        <h3>Will it break my shortcuts?</h3>
+        <ul>
+          <li><b>Right Alt</b> is never touched, so Alt + number shortcuts still work with it.</li>
+          <li><b>Ctrl + Alt</b> (AltGr on AZERTY and other layouts) is left alone.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Start with Windows, or not</h3>
+        <p>Right-click the tray icon and tick <b>Run on startup</b>. It's also listed in <b>Task Manager → Startup apps</b>. Right-click → <b>Exit</b> to close it; reopen it from the Start menu.</p>
+      </div>
+      <div class="card">
+        <h3>How do I remove it?</h3>
+        <p>Download <a href="/Uninstall-AltCodes.cmd" download>Uninstall-AltCodes.cmd</a> and double-click it. It removes the app, the Start menu shortcut and the startup entry.</p>
+      </div>
+      <div class="card">
+        <h3>Doesn't work in one app?</h3>
+        <p>Windows doesn't let normal apps send keys into programs running <b>as administrator</b>. Everywhere else it works. Some antivirus tools warn about new apps that read the keyboard; if yours does, allow <code>%LOCALAPPDATA%\Programs\AltCodes</code>.</p>
+      </div>
+      <div class="card">
+        <h3>Prefer PowerShell?</h3>
+        <p>Paste this into PowerShell (no admin needed):</p>
+        <pre>irm https://raw.githubusercontent.com/zubairmetabox/alt-codes/main/Install-AltCodes.ps1 -OutFile "$env:TEMP\Install-AltCodes.ps1"; powershell -NoProfile -ExecutionPolicy Bypass -File "$env:TEMP\Install-AltCodes.ps1"</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Alt Codes · free and open source, MIT licence</span>
+    <span><a href="https://github.com/zubairmetabox/alt-codes">Source on GitHub</a> · <a href="/Install-AltCodes.ps1">Raw script</a></span>
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  // Not-Windows hint
+  if (!/Windows/i.test(navigator.userAgent)) document.getElementById('notWin').style.display = 'block';
+
+  // Code tiles
+  const codes = [
+    ['é','130','0233'],['è','138','0232'],['ê','136','0234'],['à','133','0224'],['â','131','0226'],
+    ['ç','135','0231'],['ù','151','0249'],['ô','147','0244'],['î','140','0238'],['ë','137','0235'],
+    ['É','144','0201'],['À','','0192'],['Ç','128','0199'],['ñ','164','0241'],['ü','129','0252'],
+    ['€','','0128'],['£','156','0163'],['©','','0169'],['°','248','0176'],['±','241','0177'],
+    ['–','','0150'],['—','','0151'],['«','174','0171'],['»','175','0187'],['•','7','0149'],
+    ['×','','0215'],['÷','246','0247'],['½','171','0189'],['¿','168','0191'],['™','','0153']
+  ];
+  const grid = document.getElementById('codeGrid');
+  for (const [ch, oem, ansi] of codes) {
+    const b = document.createElement('button');
+    b.className = 'code';
+    b.title = 'Copy ' + ch;
+    b.innerHTML = '<span class="ch"></span><span class="num"></span>';
+    b.querySelector('.ch').textContent = ch;
+    const n = b.querySelector('.num');
+    n.textContent = 'Alt ' + (oem || ansi);
+    if (oem) { const e = document.createElement('em'); e.textContent = 'or ' + ansi; n.appendChild(e); }
+    b.onclick = () => navigator.clipboard.writeText(ch).then(() => toast('Copied ' + ch));
+    grid.appendChild(b);
+  }
+  function toast(t) {
+    const el = document.getElementById('toast');
+    el.textContent = t; el.classList.add('show');
+    clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1400);
+  }
+
+  // Demo animation: Alt + 1 3 0 -> é, cycling through a few words
+  const words = [['Caf', 'é', ['1','3','0']], ['Fran', 'ç', ['1','3','5']], ['10 ', '€', ['0','1','2','8']], ['25', '°', ['2','4','8']]];
+  const kAlt = document.getElementById('kAlt'), typed = document.getElementById('typed');
+  const keyEls = [0,1,2].map(i => document.getElementById('k' + i));
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  (async function loop() {
+    for (let w = 0; ; w = (w + 1) % words.length) {
+      const [pre, ch, digits] = words[w];
+      typed.textContent = pre;
+      // show up to 4 digit keys
+      keyEls.forEach(k => k.style.display = 'none');
+      while (keyEls.length < digits.length) {
+        const k = document.createElement('span'); k.className = 'key'; keyEls[keyEls.length - 1].after(k); keyEls.push(k);
+      }
+      digits.forEach((d, i) => { keyEls[i].textContent = d; keyEls[i].style.display = ''; });
+      await wait(900);
+      kAlt.classList.add('on'); await wait(350);
+      for (let i = 0; i < digits.length; i++) { keyEls[i].classList.add('on'); await wait(240); keyEls[i].classList.remove('on'); await wait(120); }
+      await wait(200); kAlt.classList.remove('on');
+      typed.textContent = pre + ch;
+      await wait(2000);
+    }
+  })();
+</script>
+</body>
+</html>
